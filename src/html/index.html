@@ -4,19 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../scss/main.scss" />
-    <title>¿Qué coctel preparo hoy?</title>
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <title>¿Qué cóctel preparo hoy?</title>
   </head>
   <body>
     <header></header>
     <main>
-      <section></section>
       <section>
-        <article></article>
-        <article></article>
+        <h2></h2>
+        <form action="#">
+          <input class="js-input" type="text" placeholder="Busca un coctel" />
+          <input class="js-searchBtn" type="button" value="Buscar" />
+          <input class="js-resetBtn" type="button" value="Reset" />
+        </form>
+      </section>
+      <section class="section-2">
+        <article>
+          <h3>Resultados</h3>
+          <ul class="js-cocktails"></ul>
+        </article>
+        <article>
+          <h3>Favoritos</h3>
+          <ul class="js-favourites"></ul>
+        </article>
       </section>
     </main>
     <footer></footer>
-    <script src="../js/main.js"></script>
+    <script src="./assets/js/main.js"></script>
   </body>
 </html>

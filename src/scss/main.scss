@@ -1,8 +1,16 @@
 @import "core/variables";
 @import "core/reset";
-@import "components/code";
-@import "components/links";
 @import "layout/page";
 @import "layout/header";
 @import "layout/footer";
-@import "pages/index";
+
+.imgMargaritas {
+  height: 295px;
+  width: 210px;
+}
+
+.section-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
