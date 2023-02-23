@@ -26,7 +26,6 @@ fetch(urlMargaritas)
     renderCocktails(margaritas);
     addEvent();
     searchFav();
-    console.log(localFav);
   });
 
 // search favourites in LocalStorage
@@ -79,8 +78,8 @@ function handleClickList(ev) {
   if (indexMarg === -1) {
     favMargarita.push(selectedMargaritas);
     renderFavourites(favMargarita);
-    localStorage.setItem('cocktails', JSON.stringify(favMargarita));
   }
+  localStorage.setItem('cocktails', JSON.stringify(favMargarita));
   // const selectedCocktails = allCocktails.find(drink => drink.id === ev.currentTarget.id);
   // const indexCocktail = favCocktails.findIndex(drink => drink.id === ev.currentTarget.id);
   // if (indexCocktail === -1) {
