@@ -1,16 +1,22 @@
 .footer {
-  height: 50px;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
   &__text {
-    text-align: center;
     font-family: $mainFont;
     font-weight: 600;
     font-size: 20px;
     letter-spacing: 2px;
-    margin-top: 25px;
   }
   &__link {
     text-decoration: none;
     cursor: pointer;
     color: $mainColor;
+  }
+  &__small {
+    font-family: $mainFont;
+    font-size: 20px;
   }
 }
