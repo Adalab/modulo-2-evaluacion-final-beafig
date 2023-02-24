@@ -8,33 +8,66 @@
       src="https://kit.fontawesome.com/8841dc85f6.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="shortcut icon" href="./assets/images/icon2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zeyada&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./assets/images/icon.png" />
     <link rel="stylesheet" href="./assets/css/main.css" />
     <title>¿Qué cóctel preparo hoy?</title>
   </head>
   <body>
-    <header></header>
-    <main>
-      <section>
-        <h2></h2>
-        <form action="#">
-          <input class="js-input" type="text" placeholder="Busca un cóctel" />
-          <input class="js-searchBtn" type="button" value="Buscar" />
-          <input class="js-resetBtn" type="reset" value="Reset" />
-        </form>
-      </section>
-      <section class="section-2">
-        <article>
-          <h3>Resultados</h3>
+    <header>
+      <div class="header">
+        <h1 class="header__title">Cocktails</h1>
+        <img
+          class="header__logo"
+          src="./assets/images/icon.png"
+          alt="Cocktails Logo"
+          title="Cocktails Logo"
+        />
+      </div>
+      <form class="header__form" action="#">
+        <input
+          class="js-input header__input"
+          type="text"
+          placeholder="Busca un cóctel"
+        />
+        <input class="js-searchBtn header__btn" type="button" value="Buscar" />
+      </form>
+    </header>
+
+    <main class="main">
+      <section class="main__section2">
+        <article class="main__list">
+          <h2 class="main__list--title">Resultados</h2>
           <ul class="js-cocktails"></ul>
         </article>
-        <article>
-          <h3>Favoritos</h3>
+        <article class="main__list">
+          <div class="main__list--container">
+            <h2 class="main__list--title main__list--title2">Favoritos</h2>
+            <input class="js-resetBtn main__list--btn" type="reset" value="Reset" />
+          </div>
           <ul class="js-favourites"></ul>
         </article>
       </section>
     </main>
-    <footer></footer>
+
+    <footer class="footer">
+      <p class="footer__text">
+        Made it with 💜 by
+        <a
+          class="footer__link"
+          href="https://github.com/Adalab/modulo-2-evaluacion-final-beafig"
+          target="_blank"
+          >Bea</a
+        >
+        🐑
+      </p>
+    </footer>
+
     <script src="./assets/js/main.js"></script>
   </body>
 </html>
