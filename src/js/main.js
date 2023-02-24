@@ -25,7 +25,6 @@ fetch(urlMargaritas)
 // function to create new array with some data elements using map
 
 function map(array) {
-  console.log(array);
   allCocktails = array.drinks.map((drink) => ({
     name: drink.strDrink,
     photo: drink.strDrinkThumb,
@@ -40,6 +39,7 @@ function searchFav() {
   if (localFav) {
     favCocktails = localFav;
     renderFavourites(favCocktails);
+    console.log('estoy en local');
   }
 }
 searchFav();
@@ -58,7 +58,7 @@ function renderCocktails(array) {
     if (!photoCocktail) {
       photoCocktail = './assets/images/cocktails.png';
     }
-    const html = `<li class="js-liElement ${selected}" id="${eachObj.id}"><h4>${eachObj.name}</h4> <img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="imgCocktail"/></li>`;
+    const html = `<li class="js-liElement main__list--cocktails ${selected}" id="${eachObj.id}"><h4 class="main__list--name">${eachObj.name}</h4> <img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="imgCocktail"/></li>`;
     cocktailList.innerHTML += html;
   }
   addEvent();
@@ -73,7 +73,6 @@ function handleClickBtn(ev) {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputValue}`)
     .then(response => response.json())
     .then(data => {
-      console.log(data.drinks);
       if (data.drinks === null) {
         cocktailList.innerHTML = 'Lo sentimos, el cóctel buscado no está en la lista';
       } else {
@@ -101,7 +100,7 @@ function handleClickList(ev) {
     localStorage.removeItem('cocktails');
     localStorage.setItem('cocktails', JSON.stringify(favCocktails));
   }
-  addCloseBtn();
+  // addCloseBtn();
 }
 
 // function to paint list of favourites
@@ -109,7 +108,7 @@ function handleClickList(ev) {
 function renderFavourites(array) {
   favouritesList.innerHTML = '';
   for (const eachObj of array) {
-    favouritesList.innerHTML += `<li class="js-liElement" id="${eachObj.id}"> <h4>${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h4> <img src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="imgCocktail"/> </li>`;
+    favouritesList.innerHTML += `<li class="js-liElement main__list--cocktails" id="${eachObj.id}"><h4 class="main__list--name">${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h4> <img src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="imgCocktail"/> </li>`;
   }
   addCloseBtn();
 }
@@ -118,7 +117,6 @@ function renderFavourites(array) {
 
 function handleClickReset(ev) {
   ev.preventDefault();
-  console.log();
   favouritesList.innerHTML = '';
   localStorage.removeItem('cocktails');
 }
@@ -126,17 +124,15 @@ function handleClickReset(ev) {
 // handle function to delete each favoutire
 
 function handleClickClose(ev) {
-  console.log(ev.currentTarget.id);
   const indexClose = favCocktails.findIndex(close => close.id === ev.currentTarget.id);
-  console.log(indexClose);
   favCocktails.splice(indexClose, 1);
-  console.log(favCocktails);
   renderFavourites(favCocktails);
   localStorage.removeItem('cocktails');
-  localStorage.setItem('cocktails', JSON.stringify(favCocktails));
   renderCocktails(allCocktails);
+  localStorage.setItem('cocktails', JSON.stringify(favCocktails));
+  console.log(favCocktails);
 }
-
+console.log(favCocktails);
 //EVENTS
 
 //listener in search button

@@ -8,33 +8,20 @@
       src="https://kit.fontawesome.com/8841dc85f6.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="shortcut icon" href="./assets/images/icon2.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zeyada&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="./assets/images/icon.png" />
     <link rel="stylesheet" href="./assets/css/main.css" />
     <title>¿Qué cóctel preparo hoy?</title>
   </head>
   <body>
-    <header></header>
-    <main>
-      <section>
-        <h2></h2>
-        <form action="#">
-          <input class="js-input" type="text" placeholder="Busca un cóctel" />
-          <input class="js-searchBtn" type="button" value="Buscar" />
-          <input class="js-resetBtn" type="reset" value="Reset" />
-        </form>
-      </section>
-      <section class="section-2">
-        <article>
-          <h3>Resultados</h3>
-          <ul class="js-cocktails"></ul>
-        </article>
-        <article>
-          <h3>Favoritos</h3>
-          <ul class="js-favourites"></ul>
-        </article>
-      </section>
-    </main>
-    <footer></footer>
+    <include src="./partials/header.html"></include>
+    <include src="./partials/main.html"></include>
+    <include src="./partials/footer.html"></include>
     <script src="./assets/js/main.js"></script>
   </body>
 </html>

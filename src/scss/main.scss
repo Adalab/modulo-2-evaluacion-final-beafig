@@ -1,23 +1,10 @@
 @import "core/variables";
 @import "core/reset";
-@import "layout/page";
+@import "layout/body";
 @import "layout/header";
 @import "layout/footer";
 
 .imgCocktail {
-  // height: 295px;
-  // width: 210px;
   height: 150px;
   width: 110px;
-}
-
-.section-2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.selected {
-  background-color: black;
-  color: white;
 }
