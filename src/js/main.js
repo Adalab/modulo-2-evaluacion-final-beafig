@@ -18,7 +18,7 @@ fetch(urlMargaritas)
   .then(data => {
     map(data);
     renderCocktails(allCocktails);
-    // addEvent();
+    addEvent();
   });
 
 // function to create new array with some data elements using map
@@ -62,7 +62,6 @@ function renderCocktails(array) {
   addEvent();
 }
 
-
 // handle function for search button
 
 function handleClickBtn(ev) {
@@ -98,7 +97,7 @@ function handleClickList(ev) {
     localStorage.removeItem('cocktails');
     localStorage.setItem('cocktails', JSON.stringify(favCocktails));
   }
-  // addCloseBtn();
+  addCloseBtn();
 }
 
 // function to paint list of favourites
@@ -115,20 +114,23 @@ function renderFavourites(array) {
 
 function handleClickReset(ev) {
   ev.preventDefault();
+  renderCocktails(allCocktails); // para que se vuelva a pintar el listado y se quite la clase selected pero no funciona
+  favCocktails = []; //porque no se me vaciaba la lista de favoritos
   favouritesList.innerHTML = '';
   localStorage.removeItem('cocktails');
+  console.log(favCocktails);
 }
 
-// handle function to delete each favoutire
+// handle function to delete each favourite
 
 function handleClickClose(ev) {
   const indexClose = favCocktails.findIndex(close => close.id === ev.currentTarget.id);
   favCocktails.splice(indexClose, 1);
   localStorage.removeItem('cocktails');
+  renderFavourites(favCocktails);
   localStorage.setItem('cocktails', JSON.stringify(favCocktails));
   renderCocktails(allCocktails);
-  renderFavourites(favCocktails);
-  console.log(favCocktails);
+  console.log(favCocktails); // me devuelve un elemento más del que debería haber
 }
 console.log(favCocktails);
 

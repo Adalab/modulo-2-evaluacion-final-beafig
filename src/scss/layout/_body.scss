@@ -4,27 +4,29 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    font-family: $mainFont;
   }
   &__list {
     background-color: white;
     width: 300px;
-    border: 5px solid #814acb;
+    border: 5px solid $mainColor;
     border-radius: 10px;
     text-align: center;
     &--title {
-      font-family: "Zeyada", cursive;
       font-size: 30px;
       font-weight: 800;
       padding: 10px;
+    }
+    &--title2 {
+      margin-left: 85px;
     }
     &--cocktails {
       padding-bottom: 10px;
     }
     &--name {
-      font-family: "Zeyada", cursive;
       font-weight: 600;
       font-size: 20px;
-      margin-bottom: 5px;
+      margin: 5px 0;
     }
     &--img {
       height: 170px;
@@ -35,20 +37,25 @@
       justify-content: space-between;
     }
     &--btn {
-      background-color: #814acb;
+      background-color: $mainColor;
       border: none;
       border-radius: 5px;
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
       height: 30px;
       margin: 8px 15px 0;
-      text-align: end;
+      font-family: $mainFont;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
   }
 }
 
 .selected {
-  border: 5px solid #814acb;
-  background-color: #814acb;
+  background-color: $mainColor;
   color: white;
+  margin-top: 10px;
+  padding-top: 10px;
 }
 
 .fa-solid {
