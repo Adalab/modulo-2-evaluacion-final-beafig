@@ -24,6 +24,23 @@
       font-family: "Zeyada", cursive;
       font-weight: 600;
       font-size: 20px;
+      margin-bottom: 5px;
+    }
+    &--img {
+      height: 170px;
+      width: 130px;
+    }
+    &--container {
+      display: flex;
+      justify-content: space-between;
+    }
+    &--btn {
+      background-color: #814acb;
+      border: none;
+      border-radius: 5px;
+      height: 30px;
+      margin: 8px 15px 0;
+      text-align: end;
     }
   }
 }
@@ -32,4 +49,8 @@
   border: 5px solid #814acb;
   background-color: #814acb;
   color: white;
+}
+
+.fa-solid {
+  margin-left: 10px;
 }

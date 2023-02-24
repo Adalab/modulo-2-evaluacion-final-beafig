@@ -18,9 +18,8 @@ fetch(urlMargaritas)
   .then(data => {
     map(data);
     renderCocktails(allCocktails);
-    addEvent();
+    // addEvent();
   });
-
 
 // function to create new array with some data elements using map
 
@@ -39,7 +38,6 @@ function searchFav() {
   if (localFav) {
     favCocktails = localFav;
     renderFavourites(favCocktails);
-    console.log('estoy en local');
   }
 }
 searchFav();
@@ -58,7 +56,7 @@ function renderCocktails(array) {
     if (!photoCocktail) {
       photoCocktail = './assets/images/cocktails.png';
     }
-    const html = `<li class="js-liElement main__list--cocktails ${selected}" id="${eachObj.id}"><h4 class="main__list--name">${eachObj.name}</h4> <img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="imgCocktail"/></li>`;
+    const html = `<li class="js-liElement main__list--cocktails ${selected}" id="${eachObj.id}"><h3 class="main__list--name">${eachObj.name}</h3> <img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img"/></li>`;
     cocktailList.innerHTML += html;
   }
   addEvent();
@@ -108,7 +106,7 @@ function handleClickList(ev) {
 function renderFavourites(array) {
   favouritesList.innerHTML = '';
   for (const eachObj of array) {
-    favouritesList.innerHTML += `<li class="js-liElement main__list--cocktails" id="${eachObj.id}"><h4 class="main__list--name">${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h4> <img src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="imgCocktail"/> </li>`;
+    favouritesList.innerHTML += `<li class="js-liElement main__list--cocktails" id="${eachObj.id}"><h3 class="main__list--name">${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h3> <img class="main__list--img img" src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img"/> </li>`;
   }
   addCloseBtn();
 }
@@ -126,13 +124,14 @@ function handleClickReset(ev) {
 function handleClickClose(ev) {
   const indexClose = favCocktails.findIndex(close => close.id === ev.currentTarget.id);
   favCocktails.splice(indexClose, 1);
-  renderFavourites(favCocktails);
   localStorage.removeItem('cocktails');
-  renderCocktails(allCocktails);
   localStorage.setItem('cocktails', JSON.stringify(favCocktails));
+  renderCocktails(allCocktails);
+  renderFavourites(favCocktails);
   console.log(favCocktails);
 }
 console.log(favCocktails);
+
 //EVENTS
 
 //listener in search button

@@ -13,8 +13,26 @@
     height: 100px;
     width: 120px;
   }
-}
-
-.fa-solid {
-  margin-left: 10px;
+  &__form {
+    text-align: end;
+    position: relative;
+    bottom: 90px;
+  }
+  &__input {
+    border: 2px solid #814acb;
+    border-radius: 5px;
+    font-family: "Zeyada", cursive;
+    height: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding-top: 3px;
+  }
+  &__btn {
+    background-color: #814acb;
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    margin: 0 15px;
+  }
 }
