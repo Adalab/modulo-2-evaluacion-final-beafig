@@ -7,7 +7,6 @@ const favouritesList = document.querySelector('.js-favourites');
 const inputElement = document.querySelector('.js-input');
 const searchBtn = document.querySelector('.js-searchBtn');
 const resetBtn = document.querySelector('.js-resetBtn');
-
 const urlMargaritas = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
 let margaritas = [];
 let allCocktails = [];
@@ -26,18 +25,17 @@ fetch(urlMargaritas)
     }));
     renderCocktails(margaritas);
     addEvent();
-    searchFav();
-    addCloseBtn();
+    // searchFav();
   });
 
 // search favourites in LocalStorage
 
-const localFav = JSON.parse(localStorage.getItem('cocktails'));
-function searchFav() {
-  if (localFav) {
-    renderFavourites(localFav);
-  }
-}
+// const localFav = JSON.parse(localStorage.getItem('cocktails'));
+// function searchFav() {
+//   if (localFav) {
+//     renderFavourites(localFav);
+//   }
+// }
 
 //function to paint list of cocktails
 
@@ -74,10 +72,10 @@ function handleClickBtn(ev) {
 // handle function to add to favourites list
 
 function handleClickList(ev) {
-  ev.currentTarget.classList.add('selected');
   const selectedMargaritas = margaritas.find(drink => drink.id === ev.currentTarget.id);
   const indexMarg = favMargarita.findIndex(drink => drink.id === ev.currentTarget.id);
   if (indexMarg === -1) {
+    ev.currentTarget.classList.add('selected');
     favMargarita.push(selectedMargaritas);
     renderFavourites(favMargarita);
     localStorage.setItem('cocktails', JSON.stringify(favMargarita));
@@ -89,6 +87,7 @@ function handleClickList(ev) {
   //   const selectedCocktails = allCocktails.find(drink => drink.id === ev.currentTarget.id);
   //   const indexCocktail = favCocktails.findIndex(drink => drink.id === ev.currentTarget.id);
   //   if (indexCocktail === -1) {
+  //ev.currentTarget.classList.add('selected');
   //     favCocktails.push(selectedCocktails);
   //     renderFavourites(favCocktails);
   //     localStorage.setItem('cocktails', JSON.stringify(favCocktails));
@@ -97,57 +96,59 @@ function handleClickList(ev) {
   //     favCocktails.splice(indexCocktail, 1);
   //     renderFavourites(favCocktails);
   //   }
-  // }
+  addCloseBtn();
+}
 
-  // function to paint list of favourites
+// function to paint list of favourites
 
-  function renderFavourites(array) {
-    favouritesList.innerHTML = '';
-    for (const eachObj of array) {
-      favouritesList.innerHTML += `<li class="js-liElement"> <h4>${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h4> <img src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="imgCocktail"/> </li>`;
-    }
+function renderFavourites(array) {
+  favouritesList.innerHTML = '';
+  for (const eachObj of array) {
+    favouritesList.innerHTML += `<li class="js-liElement"> <h4>${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h4> <img src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="imgCocktail"/> </li>`;
   }
+}
 
-  // handle function to reset favourites list
+// handle function to reset favourites list
 
-  function handleClickReset(ev) {
-    ev.preventDefault();
-    console.log();
-    favouritesList.innerHTML = '';
-    localStorage.removeItem('cocktails');
+function handleClickReset(ev) {
+  ev.preventDefault();
+  console.log();
+  favouritesList.innerHTML = '';
+  localStorage.removeItem('cocktails');
+}
+
+// handle function to delete each favoutire
+
+function handleClickClose(ev) {
+  console.log(ev.currentTarget.id);
+  const indexClose = favMargarita.findIndex(close => close.id === ev.currentTarget.id);
+  console.log(indexClose);
+  if (indexClose !== -1) {
+    favMargarita.splice(indexClose, 1);
+    renderFavourites(favMargarita);
   }
+}
 
-  // handle function to delete each favoutire
+//EVENTS
 
-  function handleClickClose(ev) {
-    console.log(ev.currentTarget.id);
-    const indexClose = favMargarita.findIndex(close => close.id === ev.currentTarget.id);
-    console.log(indexClose);
-    if (indexClose === -1) {
-      favMargarita.splice();
-    }
+//listener in search button
+searchBtn.addEventListener('click', handleClickBtn);
+
+//listener in cocktail's list
+function addEvent() {
+  const liElements = document.querySelectorAll('.js-liElement');
+  for (const eachLi of liElements) {
+    eachLi.addEventListener('click', handleClickList);
   }
+}
 
-  //EVENTS
+//listener in reset button
+resetBtn.addEventListener('click', handleClickReset);
 
-  //listener in search button
-  searchBtn.addEventListener('click', handleClickBtn);
-
-  //listener in cocktail's list
-  function addEvent() {
-    const liElements = document.querySelectorAll('.js-liElement');
-    for (const eachLi of liElements) {
-      eachLi.addEventListener('click', handleClickList);
-    }
+//listener in x icons to delete favs
+function addCloseBtn() {
+  const closeIcons = document.querySelectorAll('.js-closeIcon');
+  for (const eachX of closeIcons) {
+    eachX.addEventListener('click', handleClickClose);
   }
-
-  //listener in reset button
-  resetBtn.addEventListener('click', handleClickReset);
-
-  //listener in x icons to delete favs
-  // function addCloseBtn() {
-  //   const closeIcons = document.querySelectorAll('.js-closeIcon');
-  //   for (const eachX of closeIcons) {
-  //     eachX.addEventListener('click', handleClickClose);
-  //   }
-  // }
+}
