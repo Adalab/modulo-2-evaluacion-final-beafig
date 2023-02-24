@@ -14,6 +14,7 @@
     text-align: center;
     &--title {
       font-size: 30px;
+      letter-spacing: 1px;
       font-weight: 800;
       padding: 10px;
     }
@@ -25,12 +26,21 @@
     }
     &--name {
       font-weight: 600;
+      letter-spacing: 1px;
       font-size: 20px;
       margin: 5px 0;
+    }
+    &--name2 {
+      cursor: pointer;
     }
     &--img {
       height: 170px;
       width: 130px;
+      border: 3px solid $mainColor;
+      border-radius: 10px;
+    }
+    &--img2 {
+      cursor: pointer;
     }
     &--container {
       display: flex;
@@ -47,6 +57,7 @@
       font-size: 20px;
       font-weight: bold;
       letter-spacing: 1px;
+      cursor: pointer;
     }
   }
 }
@@ -60,4 +71,5 @@
 
 .fa-solid {
   margin-left: 10px;
+  cursor: pointer;
 }

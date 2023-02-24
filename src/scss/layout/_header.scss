@@ -6,6 +6,7 @@
   padding: 25px;
   &__title {
     font-family: $mainFont;
+    letter-spacing: 1px;
     font-size: 80px;
     font-weight: 700;
     margin-top: 15px;
@@ -41,5 +42,6 @@
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 1px;
+    cursor: pointer;
   }
 }

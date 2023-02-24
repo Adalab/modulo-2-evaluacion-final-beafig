@@ -56,7 +56,7 @@ function renderCocktails(array) {
     if (!photoCocktail) {
       photoCocktail = './assets/images/cocktails.png';
     }
-    const html = `<li class="js-liElement main__list--cocktails ${selected}" id="${eachObj.id}"><h3 class="main__list--name">${eachObj.name}</h3> <img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img"/></li>`;
+    const html = `<li class="js-liElement main__list--cocktails ${selected}" id="${eachObj.id}"><h3 class="main__list--name main__list--name2">${eachObj.name}</h3> <img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img main__list--img2"/></li>`;
     cocktailList.innerHTML += html;
   }
   addEvent();
