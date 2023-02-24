@@ -60,8 +60,6 @@ function renderCocktails(array) {
     }
     const html = `<li class="js-liElement ${selected}" id="${eachObj.id}"><h4>${eachObj.name}</h4> <img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="imgCocktail"/></li>`;
     cocktailList.innerHTML += html;
-    // console.log(indexCocktail);
-    // console.log(allCocktails);
   }
   addEvent();
 }
@@ -75,9 +73,14 @@ function handleClickBtn(ev) {
   fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${inputValue}`)
     .then(response => response.json())
     .then(data => {
-      map(data);
-      cocktailList.innerHTML = '';
-      renderCocktails(allCocktails);
+      console.log(data.drinks);
+      if (data.drinks === null) {
+        cocktailList.innerHTML = 'Lo sentimos, el cóctel buscado no está en la lista';
+      } else {
+        map(data);
+        cocktailList.innerHTML = '';
+        renderCocktails(allCocktails);
+      }
     });
 }
 
@@ -100,8 +103,6 @@ function handleClickList(ev) {
   }
   addCloseBtn();
 }
-
-
 
 // function to paint list of favourites
 
