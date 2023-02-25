@@ -80,5 +80,9 @@
 
 .fa-solid {
   margin-left: 10px;
+  color: $mainColor;
+  padding: 0 4px;
+  border: 2px solid $mainColor;
+  border-radius: 50%;
   cursor: pointer;
 }

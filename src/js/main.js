@@ -53,6 +53,9 @@ function renderCocktails(array) {
     if (indexCocktail !== -1) {
       selected = 'selected';
     }
+    if (favCocktails === []) {
+      selected = '';// al darle a reset no se quitaba la clase, sería correcto expresarlo así?
+    }
     if (!photoCocktail) {
       photoCocktail = './assets/images/cocktails.png';
     }
@@ -114,10 +117,10 @@ function renderFavourites(array) {
 
 function handleClickReset(ev) {
   ev.preventDefault();
-  renderCocktails(allCocktails); // para que se vuelva a pintar el listado y se quite la clase selected pero no funciona
   favCocktails = []; //porque no se me vaciaba la lista de favoritos
   favouritesList.innerHTML = '';
   localStorage.removeItem('cocktails');
+  renderCocktails(allCocktails); // para que se vuelva a pintar el listado y se quite la clase selected pero no funciona
   console.log(favCocktails);
 }
 
@@ -128,11 +131,19 @@ function handleClickClose(ev) {
   favCocktails.splice(indexClose, 1);
   localStorage.removeItem('cocktails');
   renderFavourites(favCocktails);
-  localStorage.setItem('cocktails', JSON.stringify(favCocktails));
   renderCocktails(allCocktails);
+  localStorage.setItem('cocktails', JSON.stringify(favCocktails));
   console.log(favCocktails); // me devuelve un elemento más del que debería haber
 }
 console.log(favCocktails);
+
+// function to searh by pressing enter
+
+function handleIntro(ev) {
+  if (ev.code === 'Enter') {
+    handleClickBtn(ev);
+  }
+}
 
 //EVENTS
 
@@ -157,3 +168,7 @@ function addCloseBtn() {
     eachX.addEventListener('click', handleClickClose);
   }
 }
+
+// listener para realizar busqueda al pulsar intro
+
+inputElement.addEventListener('keyup', handleIntro)
