@@ -15,7 +15,6 @@
     text-align: center;
     margin: 40px;
     &--title {
-      color: $mainColor;
       font-family: "Gloock", serif;
       font-size: 25px;
       font-weight: 800;
@@ -44,11 +43,17 @@
     &--name2 {
       cursor: pointer;
     }
+    &--name2:hover {
+      transform: scale(120%);
+    }
     &--img {
       height: 170px;
       width: 130px;
       border: 3px solid $mainColor;
       border-radius: 10px;
+    }
+    &--img2:hover {
+      transform: scale(110%);
     }
     &--img2 {
       cursor: pointer;
