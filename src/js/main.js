@@ -120,7 +120,7 @@ function handleClickReset(ev) {
   favCocktails = []; //porque no se me vaciaba la lista de favoritos
   favouritesList.innerHTML = '';
   localStorage.removeItem('cocktails');
-  renderCocktails(allCocktails); // para que se vuelva a pintar el listado y se quite la clase selected pero no funciona
+  renderCocktails(allCocktails); // para que se vuelva a pintar el listado y se quite la clase selected pero no funciona sin el nuevo if 
   console.log(favCocktails);
 }
 
@@ -133,7 +133,7 @@ function handleClickClose(ev) {
   renderFavourites(favCocktails);
   renderCocktails(allCocktails);
   localStorage.setItem('cocktails', JSON.stringify(favCocktails));
-  console.log(favCocktails); // me devuelve un elemento más del que debería haber
+  console.log(favCocktails); // me devuelve un elemento más del que debería haber, el primer click funciona, al segundo si quito un elemento se vuelve a añadir al final de la lista
 }
 console.log(favCocktails);
 
