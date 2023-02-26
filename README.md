@@ -1,4 +1,4 @@
-![Bea|25%](./docs/assets/images/studying2.png)
+![Bea|15%](./docs/assets/images/studying2.png)
 
 # Ejercicio de evaluación modulo 2 de Bea Figueroa
 
