@@ -16,9 +16,9 @@ let favCocktails = [];
 fetch(urlMargaritas)
   .then(response => response.json())
   .then(data => {
-    map(data);
-    renderCocktails(allCocktails);
-    addEvent();
+    map(data); // to create new array only with the info I need it
+    renderCocktails(allCocktails); // to paint the margarita's list
+    addEvent(); // add listener to the elements of the list
   });
 
 // function to create new array with some data elements using map
@@ -31,7 +31,7 @@ function map(array) {
   }));
 }
 
-// search favourites in LocalStorage
+// search favourites in LocalStorage and paint it
 
 const localFav = JSON.parse(localStorage.getItem('cocktails'));
 function searchFav() {
@@ -54,7 +54,7 @@ function renderCocktails(array) {
       selected = 'selected';
     }
     if (favCocktails === []) {
-      selected = '';// al darle a reset no se quitaba la clase, sería correcto expresarlo así?
+      selected = '';
     }
     if (!photoCocktail) {
       photoCocktail = './assets/images/cocktails.png';
@@ -62,7 +62,7 @@ function renderCocktails(array) {
     const html = `<li class="js-liElement main__list--cocktails ${selected}" id="${eachObj.id}"><h3 class="main__list--name main__list--name2">${eachObj.name}</h3> <img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img main__list--img2"/></li>`;
     cocktailList.innerHTML += html;
   }
-  addEvent();
+  addEvent(); // add listener to the elements of the list
 }
 
 // handle function for search button
@@ -100,7 +100,6 @@ function handleClickList(ev) {
     localStorage.removeItem('cocktails');
     localStorage.setItem('cocktails', JSON.stringify(favCocktails));
   }
-  addCloseBtn();
 }
 
 // function to paint list of favourites
@@ -108,20 +107,19 @@ function handleClickList(ev) {
 function renderFavourites(array) {
   favouritesList.innerHTML = '';
   for (const eachObj of array) {
-    favouritesList.innerHTML += `<li class="js-liElement main__list--cocktails" id="${eachObj.id}"><h3 class="main__list--name">${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h3> <img class="main__list--img img" src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img"/> </li>`;
+    favouritesList.innerHTML += `<li class="main__list--cocktails" id="${eachObj.id}"><h3 class="main__list--name">${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h3> <img class="main__list--img img" src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img"/> </li>`;
   }
-  addCloseBtn();
+  addCloseBtn();// add listener to X icon
 }
 
 // handle function to reset favourites list
 
 function handleClickReset(ev) {
   ev.preventDefault();
-  favCocktails = []; //porque no se me vaciaba la lista de favoritos
+  favCocktails = [];
   favouritesList.innerHTML = '';
   localStorage.removeItem('cocktails');
-  renderCocktails(allCocktails); // para que se vuelva a pintar el listado y se quite la clase selected pero no funciona sin el nuevo if 
-  console.log(favCocktails);
+  renderCocktails(allCocktails);
 }
 
 // handle function to delete each favourite
@@ -133,9 +131,8 @@ function handleClickClose(ev) {
   renderFavourites(favCocktails);
   renderCocktails(allCocktails);
   localStorage.setItem('cocktails', JSON.stringify(favCocktails));
-  console.log(favCocktails); // me devuelve un elemento más del que debería haber, el primer click funciona, al segundo si quito un elemento se vuelve a añadir al final de la lista
 }
-console.log(favCocktails);
+
 
 // function to searh by pressing enter
 
@@ -169,6 +166,5 @@ function addCloseBtn() {
   }
 }
 
-// listener para realizar busqueda al pulsar intro
-
-inputElement.addEventListener('keyup', handleIntro)
+// listener to search pressing enter key
+inputElement.addEventListener('keyup', handleIntro);
