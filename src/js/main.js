@@ -27,7 +27,8 @@ function map(array) {
   allCocktails = array.drinks.map((drink) => ({
     name: drink.strDrink,
     photo: drink.strDrinkThumb,
-    id: drink.idDrink
+    id: drink.idDrink,
+    alcocholic: drink.strAlcoholic
   }));
 }
 
@@ -50,6 +51,7 @@ function renderCocktails(array) {
     const indexCocktail = favCocktails.findIndex(drink => drink.id === eachObj.id);
     let photoCocktail = eachObj.photo;
     let selected = '';
+    let isAlcoholic = '';
     if (indexCocktail !== -1) {
       selected = 'selected';
     }
@@ -59,7 +61,12 @@ function renderCocktails(array) {
     if (!photoCocktail) {
       photoCocktail = './assets/images/cocktails.png';
     }
-    const html = `<li class="js-liElement main__list--cocktails ${selected}" id="${eachObj.id}"><h3 class="main__list--name main__list--name2">${eachObj.name}</h3> <img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img main__list--img2"/></li>`;
+    if (eachObj.alcocholic === 'Alcoholic') {
+      isAlcoholic = 'Tiene alcohol';
+    } else {
+      isAlcoholic = 'Sin alcohol';
+    }
+    const html = `<li class="js-liElement main__list--cocktails ${selected}" id="${eachObj.id}"><h3 class="main__list--name main__list--name2">${eachObj.name}</h3> <p>${isAlcoholic}</p><img src="${photoCocktail}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img main__list--img2"/></li>`;
     cocktailList.innerHTML += html;
   }
   addEvent(); // add listener to the elements of the list
@@ -107,9 +114,10 @@ function handleClickList(ev) {
 function renderFavourites(array) {
   favouritesList.innerHTML = '';
   for (const eachObj of array) {
-    favouritesList.innerHTML += `<li class="main__list--cocktails" id="${eachObj.id}"><h3 class="main__list--name">${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h3> <img class="main__list--img img" src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img"/> </li>`;
+    favouritesList.innerHTML += `<li class="main__list--cocktails js-favouritesElement" id="${eachObj.id}"><h3 class="main__list--name">${eachObj.name}<i class="fa-solid fa-xmark js-closeIcon" id="${eachObj.id}"></i></h3> <img class="main__list--img img" src="${eachObj.photo}" title="${eachObj.name}" alt="${eachObj.name}" class="main__list--img"/> </li>`;
   }
   addCloseBtn();// add listener to X icon
+  addListener();
 }
 
 // handle function to reset favourites list
@@ -142,6 +150,13 @@ function handleIntro(ev) {
   }
 }
 
+//
+
+function handleClickFavourites(ev) {
+  const favClick = favCocktails.find(drink => drink.id === ev.currentTarget.id);
+  console.log(favClick.name);
+}
+
 //EVENTS
 
 //listener in search button
@@ -168,3 +183,12 @@ function addCloseBtn() {
 
 // listener to search pressing enter key
 inputElement.addEventListener('keyup', handleIntro);
+
+// listener for favourites list
+
+function addListener() {
+  const favouritesElements = document.querySelectorAll('.js-favouritesElement');
+  for (const eachElement of favouritesElements) {
+    eachElement.addEventListener('click', handleClickFavourites);
+  }
+}
