@@ -18,7 +18,6 @@ fetch(urlMargaritas)
   .then(data => {
     map(data); // to create new array only with the info I need it
     renderCocktails(allCocktails); // to paint the margarita's list
-    addEvent(); // add listener to the elements of the list
   });
 
 // function to create new array with some data elements using map
@@ -82,9 +81,11 @@ function handleClickBtn(ev) {
     .then(data => {
       if (data.drinks === null) {
         cocktailList.innerHTML = 'Lo sentimos, el cóctel buscado no está en la lista';
-      } else {
+      } else if (inputValue === '') {
+        cocktailList.innerHTML = 'Por favor, escribe el nombre del cóctel que quieras buscas';
+      }
+      else {
         map(data);
-        cocktailList.innerHTML = '';
         renderCocktails(allCocktails);
       }
     });
@@ -98,15 +99,13 @@ function handleClickList(ev) {
   if (indexCocktail === -1) {
     ev.currentTarget.classList.add('selected');
     favCocktails.push(selectedCocktails);
-    renderFavourites(favCocktails);
-    localStorage.setItem('cocktails', JSON.stringify(favCocktails));
   } else {
     ev.currentTarget.classList.remove('selected');
     favCocktails.splice(indexCocktail, 1);
-    renderFavourites(favCocktails);
     localStorage.removeItem('cocktails');
-    localStorage.setItem('cocktails', JSON.stringify(favCocktails));
   }
+  renderFavourites(favCocktails);
+  localStorage.setItem('cocktails', JSON.stringify(favCocktails));
 }
 
 // function to paint list of favourites
